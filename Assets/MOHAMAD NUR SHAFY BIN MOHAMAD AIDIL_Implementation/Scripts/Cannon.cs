@@ -5,6 +5,10 @@ using UnityEngine;
 public class Cannon : MonoBehaviour
 {
     public float rotationSpeed = 50f;
+    public float tileSpeed = 10f;
+
+    public Transform tiltpoint;
+    public Transform barrelPivot;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +35,13 @@ public class Cannon : MonoBehaviour
 
     private void BarrelTilt()
     {
+        float vInput = Input.GetAxis("Vertical");
 
+        float tiltAmount = vInput * tileSpeed * Time.deltaTime;
+
+        Vector3 pivot = tiltpoint.position;
+
+        barrelPivot.RotateAround(pivot, barrelPivot.right, tiltAmount); // Tilts the barrel from the new pivot point at tiltpoint position.
     }
 
     private void Fire()
