@@ -1,22 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Shooting : MonoBehaviour
 {
-
-    public GameObject missile;
-    public Transform shootPt;
-    [SerializeField] private float mSpeed = 10f;
+    public Missile missile;
 
     // Start is called before the first frame update
     void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
     {
 
     }
@@ -25,10 +17,12 @@ public class Shooting : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject missileObj = Instantiate(missile, shootPt.position, shootPt.rotation);
-            missileObj.GetComponent<Rigidbody>().velocity = shootPt.transform.up * mSpeed;
+            /*GameObject missileObj = Instantiate(missile, shootPt.position, shootPt.rotation); //spawn missile prefab into the scene at the position tht was taken from the transform component of the gameobject shootpoint
+            missileObj.GetComponent<Rigidbody>().velocity = -shootPt.transform.forward * mSpeed; //moving the missile forward 
 
-            Destroy(missileObj, 5f);
+            Destroy(missileObj, 5f); //destory after 5s*/
+
+            //missile.FireMissile();
         }
     }
 }

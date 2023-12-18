@@ -25,8 +25,6 @@ public class SimpleMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
         moveDir = new Vector3(horizontal, 0, vertical);
-
-        
     }
 
     private void FixedUpdate()
