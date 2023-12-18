@@ -14,12 +14,14 @@ public class Cannon : MonoBehaviour
     public Transform spawnPoint;
 
     public GameObject cannonBallPrefab;
+    public GameObject rocketPrefab;
+    public GameObject currentProjectile;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentProjectile = cannonBallPrefab;
     }
 
     // Update is called once per frame
@@ -28,6 +30,7 @@ public class Cannon : MonoBehaviour
         CannonRotation();
         BarrelTilt();
         Fire();
+        CheckInput();
     }
 
     private void CannonRotation()
@@ -35,7 +38,7 @@ public class Cannon : MonoBehaviour
         float hInput = Input.GetAxis("Horizontal");
 
         float rotationAmount = hInput * (rotationSpeed * 2) * Time.deltaTime; // Sets how much to rotate over time.
-        
+
         transform.Rotate(Vector3.up, rotationAmount);
     }
 
@@ -43,7 +46,7 @@ public class Cannon : MonoBehaviour
     {
         float vInput = Input.GetAxis("Vertical");
 
-        float tiltAmount = vInput * tileSpeed * Time.deltaTime;
+        float tiltAmount = -vInput * tileSpeed * Time.deltaTime;
 
         Vector3 pivot = tiltpoint.position;
 
@@ -54,9 +57,38 @@ public class Cannon : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject cannonBall = Instantiate(cannonBallPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject projectile = Instantiate(currentProjectile, spawnPoint.position, spawnPoint.rotation); // Sets the spawn location of the cannonball to an Empty.
 
-            cannonBall.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, shotVelocity, 0));
+            Rocket rocketScript = projectile.GetComponent<Rocket>();
+            if (rocketScript != null) 
+            {
+                rocketScript.LaunchRocket(shotVelocity);
+            }
+            else
+            {
+                Rigidbody ballRb = projectile.GetComponent<Rigidbody>();
+                if (ballRb != null)
+                {
+                    ballRb.AddRelativeForce(new Vector3(0, shotVelocity, 0));
+                }
+            }
         }
+    }
+
+    private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SwitchProjectile(cannonBallPrefab);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchProjectile(rocketPrefab);
+        }
+    }
+
+    private void SwitchProjectile(GameObject newPrefab)
+    {
+        currentProjectile = newPrefab;
     }
 }
