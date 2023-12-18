@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,14 @@ public class Cannon : MonoBehaviour
 {
     public float rotationSpeed = 50f;
     public float tileSpeed = 10f;
+    public float shotVelocity = 100f;
 
     public Transform tiltpoint;
     public Transform barrelPivot;
+    public Transform spawnPoint;
+
+    public GameObject cannonBallPrefab;
+
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +52,11 @@ public class Cannon : MonoBehaviour
 
     private void Fire()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject cannonBall = Instantiate(cannonBallPrefab, spawnPoint.position, spawnPoint.rotation);
 
+            cannonBall.GetComponent<Rigidbody>().AddRelativeForce(new Vector3(0, shotVelocity, 0));
+        }
     }
 }

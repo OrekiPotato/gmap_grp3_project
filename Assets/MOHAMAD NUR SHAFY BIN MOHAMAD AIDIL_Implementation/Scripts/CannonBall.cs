@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class CannonBall : MonoBehaviour
@@ -15,12 +16,21 @@ public class CannonBall : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ProjectileMovement();
+        //ProjectileMovement();
     }
 
-    private void ProjectileMovement()
+    //private void ProjectileMovement()
+    //{
+    //    Vector3 BallVelocity = Vector3.forward * mSpeed; // Sets cannonball movement direction
+    //    transform.Translate(BallVelocity * Time.deltaTime); // Moves cannonball based on time.
+    //}
+
+    public void SetVelocity(Vector3 direction)
     {
-        Vector3 BallVelocity = Vector3.forward * mSpeed; // Sets cannonball movement direction
-        transform.Translate(BallVelocity * Time.deltaTime); // Moves cannonball based on time.
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null )
+        {
+            rb.velocity = direction * mSpeed;
+        }
     }
 }
