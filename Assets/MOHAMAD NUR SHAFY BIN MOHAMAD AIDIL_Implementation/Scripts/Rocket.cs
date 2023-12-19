@@ -35,7 +35,7 @@ public class Rocket : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Cannon")) // Checks for Tag.
+        if (collision.gameObject.name.Contains("Cannon")) // Checks for name
         {
             return; // Ignores the Cannon object when they spawn. Avoid early explosion.
         }

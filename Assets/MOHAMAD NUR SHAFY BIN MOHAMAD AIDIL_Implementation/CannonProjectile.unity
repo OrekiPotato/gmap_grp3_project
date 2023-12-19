@@ -402,7 +402,7 @@ GameObject:
   - component: {fileID: 227037147}
   - component: {fileID: 227037146}
   m_Layer: 0
-  m_Name: Cylinder
+  m_Name: Cannon_Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1441,7 +1441,7 @@ GameObject:
   - component: {fileID: 1078033490}
   - component: {fileID: 1078033489}
   m_Layer: 0
-  m_Name: Base
+  m_Name: Cannon_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2682,7 +2682,7 @@ GameObject:
   - component: {fileID: 1414784904}
   - component: {fileID: 1414784903}
   m_Layer: 0
-  m_Name: Neck
+  m_Name: Cannon_Neck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2950,7 +2950,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1601513418}
   m_Layer: 0
-  m_Name: Center
+  m_Name: Cannon_Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4494,7 +4494,7 @@ GameObject:
   - component: {fileID: 2085028992}
   - component: {fileID: 2085028991}
   m_Layer: 0
-  m_Name: Barrel
+  m_Name: Cannon_Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
