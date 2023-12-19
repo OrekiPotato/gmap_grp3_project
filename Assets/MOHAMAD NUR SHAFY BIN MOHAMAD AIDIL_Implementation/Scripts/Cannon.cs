@@ -77,6 +77,8 @@ public class Cannon : MonoBehaviour
 
     private void CheckInput()
     {
+
+        // Switches prefabs based on what key was pressed.
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchProjectile(cannonBallPrefab);
