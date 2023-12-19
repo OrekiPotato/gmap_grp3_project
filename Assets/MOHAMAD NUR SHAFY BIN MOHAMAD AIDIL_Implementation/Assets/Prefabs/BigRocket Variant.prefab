@@ -139,3 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialSpeed: 20
   accelerationFactor: 2
+  explosionForce: 900
+  explosionRadius: 10
+  upwardForce: 10
