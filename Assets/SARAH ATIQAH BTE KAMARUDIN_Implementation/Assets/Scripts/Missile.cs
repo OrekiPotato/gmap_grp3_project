@@ -21,7 +21,7 @@ public class Missile : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        enemyDeath = 0;
+        enemyDeath = 0; //initialise the enemy count to 0 first
     }
 
     private void FixedUpdate()
