@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //Locks the cursor to the middle of the screen and hides it so that it will be easier to turn turn
+        //Locks the cursor to the middle of the screen and hides it so that it will be easier to turn
         Cursor.lockState = CursorLockMode.Locked;
     }
 
