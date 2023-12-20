@@ -74,7 +74,7 @@ public class Cannon : MonoBehaviour
             {
                 rocketScript.LaunchRocket(shotVelocity);
 
-                rocketScript.RocketCollision += HandleRocketCollision;
+                rocketScript.RocketCollision += HandleRocketCollision; // Subscribes to the RocketCollision in Rocket.cs using HandleRocketCollision as handler.
             }
             else
             {

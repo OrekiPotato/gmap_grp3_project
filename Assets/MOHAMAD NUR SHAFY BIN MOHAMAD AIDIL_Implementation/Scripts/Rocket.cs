@@ -25,7 +25,7 @@ public class Rocket : MonoBehaviour
         {
             rb = GetComponent<Rigidbody>();
         }
-        LaunchRocket(initialSpeed);
+        LaunchRocket(initialSpeed); // Launches the rocket using the initial specified velocity.
     }
 
     public void LaunchRocket(float velocity)
