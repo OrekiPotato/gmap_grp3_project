@@ -5,23 +5,33 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour
 {
-    public float rotationSpeed = 50f;
+    [Header("Cannon Settings")]
+    public float rotationSpeed = 15f;
     public float tileSpeed = 10f;
     public float shotVelocity = 100f;
 
+    [Header("Empty Transforms")]
     public Transform tiltpoint;
     public Transform barrelPivot;
     public Transform spawnPoint;
 
+    [Header("Projectile Prefabs")]
     public GameObject cannonBallPrefab;
     public GameObject rocketPrefab;
+    public GameObject yapopoPrefab;
     public GameObject currentProjectile;
+
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+    [SerializeField] private AudioClip cannonFireClip;
+    [SerializeField] private AudioClip explosionClip;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentProjectile = cannonBallPrefab;
+        currentProjectile = yapopoPrefab;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -63,6 +73,8 @@ public class Cannon : MonoBehaviour
             if (rocketScript != null) 
             {
                 rocketScript.LaunchRocket(shotVelocity);
+
+                rocketScript.RocketCollision += HandleRocketCollision;
             }
             else
             {
@@ -72,6 +84,8 @@ public class Cannon : MonoBehaviour
                     ballRb.AddRelativeForce(new Vector3(0, shotVelocity, 0));
                 }
             }
+
+            audioSource.PlayOneShot(cannonFireClip);
         }
     }
 
@@ -81,9 +95,13 @@ public class Cannon : MonoBehaviour
         // Switches prefabs based on what key was pressed.
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SwitchProjectile(cannonBallPrefab);
+            SwitchProjectile(yapopoPrefab);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SwitchProjectile(cannonBallPrefab);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             SwitchProjectile(rocketPrefab);
         }
@@ -93,4 +111,16 @@ public class Cannon : MonoBehaviour
     {
         currentProjectile = newPrefab;
     }
+
+    private void HandleRocketCollision(Collider collision)
+    {
+        if (collision.GetComponent<Collider>() != null) // Checks if collided object has a collider component
+        {
+            if (explosionClip != null)
+            {
+                audioSource.PlayOneShot(explosionClip); // Plays audio clip at collision
+            }
+        }
+    }
+
 }
