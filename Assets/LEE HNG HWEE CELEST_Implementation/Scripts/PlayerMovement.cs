@@ -5,8 +5,8 @@ using UnityEngine;
 //This script allows the player to rotate the camera and move
 public class PlayerMovement : MonoBehaviour
 {
-    //Declare three floats, one to store the player's horizontal input so that the player can be moved left or right, one to store the
-    //player's vertical input so that the player can be moved forward or backward, and one to store the player's mouse x movement to
+    //Declare three floats, one to store the player's vertical input so that the player can be moved forward or backward, one to store 
+    //the player's horizontal input so that the player can be moved left or right, and one to store the player's mouse x movement to
     //rotate the player
     private float verticalInput, horizontalInput, xRotation;
     //Store the player's rotation and movement speeds so that turning and moving the player will be faster. It is declared as a public 
@@ -16,7 +16,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        //Locks the cursor to the middle of the screen and hides it so that the screen will not constantly turn
+        //Locks the cursor to the middle of the screen and hides it so that it will be easier to turn turn
         Cursor.lockState = CursorLockMode.Locked;
     }
 
