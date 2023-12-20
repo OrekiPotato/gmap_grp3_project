@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,9 @@ public class Rocket : MonoBehaviour
 
     private Rigidbody rb;
 
+    public event Action<Collider> RocketCollision; // Event used to handle rocket collision with colliders.
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,6 @@ public class Rocket : MonoBehaviour
         {
             rb = GetComponent<Rigidbody>();
         }
-
         LaunchRocket(initialSpeed);
     }
 
@@ -40,6 +43,8 @@ public class Rocket : MonoBehaviour
             return; // Ignores the Cannon object when they spawn. Avoid early explosion.
         }
 
+        RocketCollision?.Invoke(collision.collider); // Invokes event with the collider of the object it collided with.
+
         Explode();
     }
 
@@ -56,7 +61,8 @@ public class Rocket : MonoBehaviour
                 rb.AddExplosionForce(explosionForce, explosionPos, explosionRadius, upwardForce); // Generate explosion force to all collidable objects within sphere.
             }
         }
-
+        
         Destroy(gameObject);
+       
     }
 }
